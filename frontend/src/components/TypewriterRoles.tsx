@@ -13,15 +13,17 @@ type Props = {
 const DEFAULT_ROLES = [
     'Full Stack Developer',
     'Software Engineer',
+    'AI / GenAI Engineer',
+    'Cloud Solutions Builder',
     'Tech Enthusiast',
     'Open Source Contributor',
 ];
 
 export default function TypewriterRoles({
     roles = DEFAULT_ROLES,
-    typeSpeed = 75,
-    eraseSpeed = 40,
-    holdMs = 1400,
+    typeSpeed = 70,
+    eraseSpeed = 35,
+    holdMs = 1700,
     className = '',
 }: Props) {
     const [index, setIndex] = useState(0);
