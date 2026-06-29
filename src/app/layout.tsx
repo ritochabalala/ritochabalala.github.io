@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { site } from '@/data/site';
@@ -52,10 +53,10 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: `${site.name} — ${site.role}`,
         description: site.summary,
-        creator: '@rito_chabalala',
         images: ['/og-image.png'],
     },
     robots: { index: true, follow: true },
+    manifest: '/site.webmanifest',
     icons: {
         icon: [
             { url: '/icon-32.png', sizes: '32x32', type: 'image/png' },
@@ -67,13 +68,41 @@ export const metadata: Metadata = {
     },
 };
 
+export const viewport: Viewport = {
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: '#f7f8fc' },
+        { media: '(prefers-color-scheme: dark)', color: '#0b0f19' },
+    ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+    const personJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: site.name,
+        url: site.url,
+        image: `${site.url}/og-image.png`,
+        jobTitle: site.role,
+        description: site.summary,
+        email: `mailto:${site.email}`,
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Johannesburg',
+            addressCountry: 'ZA',
+        },
+        sameAs: [site.socials.github, site.socials.linkedin],
+    };
+
     return (
         <html lang="en" className={inter.variable} suppressHydrationWarning>
             <head>
                 <script
                     // Runs before paint to set the theme and avoid flash of wrong colour scheme.
                     dangerouslySetInnerHTML={{ __html: themeInitScript }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
                 />
             </head>
             <body className="min-h-screen antialiased">

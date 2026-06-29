@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, MapPin, Twitter } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { site } from '@/data/site';
 
 export default function Contact() {
@@ -62,19 +62,6 @@ export default function Contact() {
                                         <Github className="h-5 w-5 text-brand-500 dark:text-brand-400" /> @ritochabalala
                                     </span>
                                     <span className="text-xs text-slate-500 dark:text-slate-400">GitHub</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href={site.socials.twitter}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="card flex items-center justify-between hover:border-brand-400/40"
-                                >
-                                    <span className="inline-flex items-center gap-3 text-slate-900 dark:text-white">
-                                        <Twitter className="h-5 w-5 text-brand-500 dark:text-brand-400" /> @rito_chabalala
-                                    </span>
-                                    <span className="text-xs text-slate-500 dark:text-slate-400">X / Twitter</span>
                                 </a>
                             </li>
                         </ul>
