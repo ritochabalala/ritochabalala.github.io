@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === 'production';
-// Set DEPLOY_TARGET=pages when building for GitHub Pages (user/org site → no basePath needed).
-// The repo `ritochababala.github.io` is a user site, so basePath stays empty.
+// The repo `ritochabalala.github.io` matches the username, so it is served as a
+// user site at https://ritochabalala.github.io/ — no basePath/assetPrefix needed.
 const nextConfig = {
     output: 'export',
     images: { unoptimized: true },
