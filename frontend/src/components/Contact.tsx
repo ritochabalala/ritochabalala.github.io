@@ -35,7 +35,7 @@ export default function Contact() {
                                     <span className="inline-flex items-center gap-3 text-slate-900 dark:text-white">
                                         <Mail className="h-5 w-5 text-brand-500 dark:text-brand-400" /> {site.email}
                                     </span>
-                                    <span className="text-xs text-slate-500 dark:text-slate-400">Email</span>
+                                    <span className="text-xs text-slate-500 dark:text-slate-400">Gmail</span>
                                 </a>
                             </li>
                             <li>

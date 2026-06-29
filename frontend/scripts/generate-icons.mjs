@@ -6,12 +6,13 @@
  * Default source: ../profile/source.jpg (repo-level profile folder).
  *
  * Outputs to ./public/:
- *   - favicon.ico       (32 px, ICO)
+ *   - favicon.ico         (32 px, ICO)
  *   - icon-32.png
  *   - icon-192.png
  *   - icon-512.png
  *   - apple-touch-icon.png (180 px)
- *   - og-image.png      (1200 x 630, padded on brand background)
+ *   - hero-portrait.png   (1000 x 1000, used in the Hero section)
+ *   - og-image.png        (1200 x 630, padded on brand background)
  */
 import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
@@ -64,6 +65,14 @@ await square
     .toFormat('png')
     .toFile(resolve(outDir, 'favicon.ico')); // browsers accept PNG payload in .ico filename
 console.log('✓ favicon.ico');
+
+// Hero portrait — 1000x1000 high-quality crop for the homepage Hero card.
+await square
+    .clone()
+    .resize(1000, 1000, { fit: 'cover', position: 'attention' })
+    .png({ compressionLevel: 9, quality: 92 })
+    .toFile(resolve(outDir, 'hero-portrait.png'));
+console.log('✓ hero-portrait.png');
 
 // Open Graph image: 1200x630 with the portrait on the right and a brand-tinted background.
 await sharp({

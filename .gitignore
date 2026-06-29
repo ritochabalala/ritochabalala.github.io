@@ -25,3 +25,7 @@ next-env.d.ts
 
 # Local-only source assets used by frontend/scripts/generate-icons.mjs
 profile/source.*
+
+# Windows / corporate DLP alternate-data-stream sidecar files
+*:sec.endpointdlp
+*.endpointdlp

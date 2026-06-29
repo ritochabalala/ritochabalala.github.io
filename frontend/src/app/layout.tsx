@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { site } from '@/data/site';
 import { ThemeProvider, themeInitScript } from '@/components/ThemeProvider';
+import ScrollProgress from '@/components/ScrollProgress';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -106,6 +107,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 />
             </head>
             <body className="min-h-screen antialiased">
+                <a href="#main" className="skip-link">Skip to content</a>
+                <ScrollProgress />
                 <ThemeProvider>{children}</ThemeProvider>
             </body>
         </html>
