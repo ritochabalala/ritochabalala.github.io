@@ -56,9 +56,17 @@ export default function Navbar() {
         >
             <div className="container-page flex h-16 items-center justify-between">
                 <a href="#top" className="flex items-center gap-2 text-slate-900 dark:text-white font-semibold tracking-tight">
-                    <span className="inline-block h-8 w-8 rounded-lg bg-gradient-to-br from-brand-400 to-violet-500 grid place-items-center text-sm text-white">
+                    {/* <span className="inline-block h-8 w-8 rounded-lg bg-gradient-to-br from-brand-400 to-violet-500 grid place-items-center text-sm text-white">
                         R
-                    </span>
+                    </span> */}
+                    <img
+                        src="/icon-32.png"
+                        alt=""
+                        aria-hidden="true"
+                        width={32}
+                        height={32}
+                        className="h-8 w-8 rounded-lg object-cover ring-1 ring-slate-200 dark:ring-white/10"
+                    />
                     <span className="hidden sm:inline">{site.name}</span>
                 </a>
 
