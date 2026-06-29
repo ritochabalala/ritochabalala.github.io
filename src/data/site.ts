@@ -6,7 +6,7 @@ export const site = {
     location: 'Johannesburg, South Africa',
     email: 'ritochabalala@gmail.com',
     phone: '+27 63 247 3287',
-    url: 'https://ritochababala.github.io',
+    url: 'https://ritochabalala.github.io',
     socials: {
         github: 'https://github.com/ritochabalala',
         linkedin: 'https://www.linkedin.com/in/rito-chabalala-b87240160/',
