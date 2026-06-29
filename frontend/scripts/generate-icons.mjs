@@ -3,7 +3,7 @@
  *
  *   node scripts/generate-icons.mjs <source-image>
  *
- * Default source: ./profile/source.jpg
+ * Default source: ../profile/source.jpg (repo-level profile folder).
  *
  * Outputs to ./public/:
  *   - favicon.ico       (32 px, ICO)
@@ -18,7 +18,7 @@ import { mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const src = process.argv[2] ?? 'profile/source.jpg';
+const src = process.argv[2] ?? '../profile/source.jpg';
 if (!existsSync(src)) {
     console.error(`Source image not found: ${src}`);
     process.exit(1);

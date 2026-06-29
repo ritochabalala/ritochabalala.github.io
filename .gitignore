@@ -1,10 +1,10 @@
 # dependencies
-/node_modules
+node_modules/
 
 # next.js
-/.next/
-/out/
-/build
+.next/
+out/
+build/
 
 # misc
 .DS_Store
@@ -23,5 +23,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Local-only source assets used by scripts/generate-icons.mjs
+# Local-only source assets used by frontend/scripts/generate-icons.mjs
 profile/source.*
