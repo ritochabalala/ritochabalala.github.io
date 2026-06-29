@@ -99,4 +99,74 @@ body {
         background-size: 200% 200%;
         animation: gradient 8s ease infinite;
     }
+
+    /* Accessibility: visible-on-focus skip link */
+    .skip-link {
+        @apply sr-only;
+    }
+
+    .skip-link:focus,
+    .skip-link:focus-visible {
+        @apply not-sr-only fixed top-3 left-3 z-[100] rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white shadow-lg outline-none ring-2 ring-brand-400/60;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Print stylesheet — produces a clean one-page CV via Ctrl+P.
+   Hides chrome (navbar, footer, scroll-to-top, decorative blurs),
+   neutralises colours, and reflows multi-column grids.
+   ───────────────────────────────────────────────────────────── */
+@media print {
+    :root {
+        --bg: 255 255 255;
+        --fg: 15 23 42;
+    }
+
+    html,
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    /* Hide site chrome and decorative elements */
+    header,
+    footer,
+    [aria-label="Scroll to top"],
+    .skip-link,
+    [aria-hidden="true"] {
+        display: none !important;
+    }
+
+    /* Drop decorative gradient/blur backgrounds */
+    [class*="blur-3xl"],
+    [class*="blur-2xl"] {
+        display: none !important;
+    }
+
+    /* Neutralise gradient text so it prints */
+    .gradient-text {
+        background: none !important;
+        -webkit-text-fill-color: black !important;
+        color: black !important;
+    }
+
+    /* Reflow Hero / multi-column sections to single column */
+    .section,
+    section {
+        page-break-inside: avoid;
+        padding: 1rem 0 !important;
+    }
+
+    a {
+        color: black !important;
+        text-decoration: underline;
+    }
+
+    /* Avoid awkward page breaks inside cards */
+    .card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border-color: #d1d5db !important;
+        background: white !important;
+    }
 }
