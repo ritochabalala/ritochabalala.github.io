@@ -1,5 +1,6 @@
 import { ArrowRight, Download, Facebook, Github, Instagram, Linkedin, Mail, MapPin, Twitter } from 'lucide-react';
 import { site } from '@/data/site';
+import TypewriterRoles from './TypewriterRoles';
 
 export default function Hero() {
     return (
@@ -26,6 +27,11 @@ export default function Hero() {
                         <br />
                         I build <span className="gradient-text">AI-powered</span> products.
                     </h1>
+
+                    <div className="animate-fade-up mt-5 flex items-center gap-2 text-lg sm:text-xl font-medium text-slate-700 dark:text-slate-200">
+                        <span className="text-slate-500 dark:text-slate-400">I'm a</span>
+                        <TypewriterRoles />
+                    </div>
 
                     <p className="animate-fade-up mt-6 max-w-2xl text-lg text-slate-600 dark:text-slate-300">
                         {site.role} · {site.tagline}. I design, build, and ship full-stack and
