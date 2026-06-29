@@ -17,12 +17,34 @@ const links = [
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [open, setOpen] = useState(false);
+    const [active, setActive] = useState<string>('');
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 12);
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    useEffect(() => {
+        const ids = links.map((l) => l.href.slice(1));
+        const sections = ids
+            .map((id) => document.getElementById(id))
+            .filter((el): el is HTMLElement => el !== null);
+        if (sections.length === 0) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                // Pick the entry closest to the top of the viewport that is intersecting.
+                const visible = entries
+                    .filter((e) => e.isIntersecting)
+                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                if (visible[0]) setActive(`#${visible[0].target.id}`);
+            },
+            { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+        );
+        sections.forEach((s) => observer.observe(s));
+        return () => observer.disconnect();
     }, []);
 
     return (
@@ -41,11 +63,22 @@ export default function Navbar() {
                 </a>
 
                 <nav className="hidden md:flex items-center gap-7 text-sm text-slate-600 dark:text-slate-300">
-                    {links.map((l) => (
-                        <a key={l.href} href={l.href} className="link-underline hover:text-slate-900 dark:hover:text-white">
-                            {l.label}
-                        </a>
-                    ))}
+                    {links.map((l) => {
+                        const isActive = active === l.href;
+                        return (
+                            <a
+                                key={l.href}
+                                href={l.href}
+                                aria-current={isActive ? 'page' : undefined}
+                                className={`link-underline transition-colors ${isActive
+                                    ? 'text-slate-900 dark:text-white font-medium'
+                                    : 'hover:text-slate-900 dark:hover:text-white'
+                                    }`}
+                            >
+                                {l.label}
+                            </a>
+                        );
+                    })}
                 </nav>
 
                 <div className="hidden md:flex items-center gap-2">
@@ -77,16 +110,20 @@ export default function Navbar() {
             {open && (
                 <div className="md:hidden border-t border-slate-200 bg-white/90 dark:border-white/10 dark:bg-slate-950/90 backdrop-blur-md">
                     <nav className="container-page py-4 flex flex-col gap-3 text-slate-700 dark:text-slate-200">
-                        {links.map((l) => (
-                            <a
-                                key={l.href}
-                                href={l.href}
-                                onClick={() => setOpen(false)}
-                                className="py-1"
-                            >
-                                {l.label}
-                            </a>
-                        ))}
+                        {links.map((l) => {
+                            const isActive = active === l.href;
+                            return (
+                                <a
+                                    key={l.href}
+                                    href={l.href}
+                                    onClick={() => setOpen(false)}
+                                    aria-current={isActive ? 'page' : undefined}
+                                    className={`py-1 ${isActive ? 'text-slate-900 dark:text-white font-medium' : ''}`}
+                                >
+                                    {l.label}
+                                </a>
+                            );
+                        })}
                         <a href="#contact" onClick={() => setOpen(false)} className="btn-primary self-start">
                             Get in touch
                         </a>

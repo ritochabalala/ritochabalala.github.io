@@ -1,4 +1,4 @@
-import { ArrowRight, Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { ArrowRight, Download, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { site } from '@/data/site';
 
 export default function Hero() {
@@ -41,6 +41,17 @@ export default function Hero() {
                     <a href="#contact" className="btn-ghost">
                         <Mail className="h-4 w-4" /> Contact me
                     </a>
+                    {site.cv && (
+                        <a
+                            href={site.cv}
+                            target="_blank"
+                            rel="noreferrer"
+                            download
+                            className="btn-ghost"
+                        >
+                            <Download className="h-4 w-4" /> Download CV
+                        </a>
+                    )}
                     <a
                         href={site.socials.github}
                         target="_blank"
