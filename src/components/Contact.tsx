@@ -21,6 +21,9 @@ export default function Contact() {
                             <p className="mt-4 inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                                 <MapPin className="h-4 w-4" /> {site.location}
                             </p>
+                            <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+                                References available on request.
+                            </p>
                         </div>
 
                         <ul className="space-y-3">

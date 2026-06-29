@@ -6,7 +6,7 @@ export type SkillGroup = {
 export const skillGroups: SkillGroup[] = [
     {
         title: 'Languages',
-        items: ['Python', 'TypeScript', 'JavaScript', 'Java', 'R', 'SQL', 'PHP', 'C++', 'HTML', 'CSS', 'LaTeX'],
+        items: ['Python', 'TypeScript', 'JavaScript', 'C#', 'Java', 'R', 'SQL', 'PHP', 'C++', 'HTML', 'CSS', 'LaTeX'],
     },
     {
         title: 'AI / ML',
@@ -25,7 +25,7 @@ export const skillGroups: SkillGroup[] = [
     },
     {
         title: 'Frameworks & Frontend',
-        items: ['React (TypeScript)', 'Next.js', 'Django REST Framework', 'Tailwind CSS'],
+        items: ['React (TypeScript)', 'Next.js', 'Django REST Framework', 'ASP.NET Core MVC', 'Tailwind CSS'],
     },
     {
         title: 'Cloud & DevSecOps',
@@ -44,7 +44,7 @@ export const skillGroups: SkillGroup[] = [
     },
     {
         title: 'Databases & Analytics',
-        items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Oracle', 'Power BI'],
+        items: ['PostgreSQL', 'MySQL', 'SQL Server', 'MongoDB', 'Oracle', 'Power BI'],
     },
     {
         title: 'Ways of Working',
