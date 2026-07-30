@@ -7,10 +7,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Least-privilege default; jobs opt in to what they need.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
@@ -19,12 +18,19 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Skip fork PRs entirely — they can't publish to Pages and we don't want to
+    # run their code on our runners.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: read
     defaults:
       run:
         working-directory: frontend
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Setup Node
         uses: actions/setup-node@v6
@@ -58,6 +64,9 @@ jobs:
     needs: build
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
