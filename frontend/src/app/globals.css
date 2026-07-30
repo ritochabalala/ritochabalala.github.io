@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
 
 :root {
     /* Light theme (default) */
@@ -49,6 +48,11 @@ body {
     color: white;
 }
 
+/* Defined as a Tailwind v4 @utility so other classes can @apply it. */
+@utility btn {
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60;
+}
+
 @layer components {
     .container-page {
         @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
@@ -72,10 +76,6 @@ body {
 
     .chip {
         @apply inline-flex items-center rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300;
-    }
-
-    .btn {
-        @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/60;
     }
 
     .btn-primary {
