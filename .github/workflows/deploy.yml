@@ -12,7 +12,9 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages
+  # Per-ref group: PRs don't cancel each other, but pushes to main still
+  # serialize Pages deployments correctly.
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
